@@ -3,34 +3,70 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  MessageCircleCode,
   Phone,
   Send,
   Twitch,
   Twitter,
+  TwitterIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(email, name, message);
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
+    emailjs
+      .send(
+        "service_yhde5ti",
+        "template_e3jl934",
+        {
+          title: "Contact Us",
+          name: name,
+          message: message,
+          email: email,
+        },
+        "dsbgopG3a1MZrHCCx"
+      )
+      .then(
+        (result) => {
+          console.log({ result });
+
+          toast({
+            title: "Message sent!",
+            description:
+              "Thank you for your message. I'll get back to you soon.",
+          });
+          setIsSubmitting(false);
+
+          setEmail("");
+          setName("");
+          setMessage("");
+        },
+        (error) => {
+          console.error("Error sending email:", error.text);
+          alert("Failed to send message. Please try again.");
+        }
+      );
   };
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
+    <section
+      id="contact"
+      className="px-1 py-24 lg:px-4 relative bg-secondary/30 "
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Get In <span className="text-primary"> Touch</span>
@@ -53,13 +89,13 @@ export const ContactSection = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
+                <div className="flex flex-col items-start gap-0.5">
+                  <h4 className="font-medium">Email</h4>
                   <a
-                    href="mailto:hello@gmail.com"
+                    href="mailto:Johnayomide440@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    hello@gmail.com
+                    Johnayomide440@gmail.com
                   </a>
                 </div>
               </div>
@@ -67,13 +103,13 @@ export const ContactSection = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <Phone className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
+                <div className="flex flex-col items-start gap-0.5">
+                  <h4 className="font-medium">Phone</h4>
                   <a
-                    href="tel:+11234567890"
+                    href="tel:+2349036802688"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +1 (123) 456-7890
+                    +234-903-6802-688
                   </a>
                 </div>
               </div>
@@ -81,10 +117,10 @@ export const ContactSection = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
+                <div className="flex flex-col items-start gap-0.5">
+                  <h4 className="font-medium">Location</h4>
                   <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Vancouver, BC, Canada
+                    Lagos, Nigeria
                   </a>
                 </div>
               </div>
@@ -93,17 +129,23 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/john-ayomide-5055791aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                >
                   <Linkedin />
                 </a>
-                <a href="#" target="_blank">
+                <a
+                  href="https://twitter.com/JohnAyo72850989?t=ZLnUNHoBvWcqZIuLqI9WCA&s=08"
+                  target="_blank"
+                >
                   <Twitter />
                 </a>
-                <a href="#" target="_blank">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitch />
+                <a
+                  href="https://wa.me/2349036802688?text=Hi,%20I'm%20interested%20in%20your%20services"
+                  target="_blank"
+                >
+                  <MessageCircleCode />
                 </a>
               </div>
             </div>
@@ -128,9 +170,11 @@ export const ContactSection = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
+                  placeholder="John Ayomide..."
                 />
               </div>
 
@@ -146,6 +190,8 @@ export const ContactSection = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="john@gmail.com"
@@ -163,6 +209,8 @@ export const ContactSection = () => {
                 <textarea
                   id="message"
                   name="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."

@@ -22,11 +22,15 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        isScrolled
+          ? "py-3 bg-background/80 backdrop-blur-md shadow-xs"
+          : "py-5",
+        "backdrop-filter backdrop-blur-sm bg-white/10" // Glass effect
       )}
     >
       <div className="container flex items-center justify-between">
@@ -35,13 +39,13 @@ export const Navbar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> PedroTech </span>{" "}
+            <span className="text-glow text-foreground"> Ayomide's </span>{" "}
             Portfolio
           </span>
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 ">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -60,7 +64,7 @@ export const Navbar = () => {
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         <div

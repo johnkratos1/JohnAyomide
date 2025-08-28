@@ -6,25 +6,30 @@ const skills = [
   { name: "HTML/CSS", level: 95, category: "frontend" },
   { name: "JavaScript", level: 90, category: "frontend" },
   { name: "React", level: 90, category: "frontend" },
+  { name: "React Native", level: 80, category: "frontend" },
   { name: "TypeScript", level: 85, category: "frontend" },
   { name: "Tailwind CSS", level: 90, category: "frontend" },
   { name: "Next.js", level: 80, category: "frontend" },
+  { name: "Expo", level: 80, category: "frontend" },
 
   // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
-  { name: "MongoDB", level: 70, category: "backend" },
-  { name: "PostgreSQL", level: 65, category: "backend" },
-  { name: "GraphQL", level: 60, category: "backend" },
+  // { name: "Node.js", level: 80, category: "backend" },
+  // { name: "Express", level: 75, category: "backend" },
+  // { name: "MongoDB", level: 70, category: "backend" },
+  // { name: "PostgreSQL", level: 65, category: "backend" },
+  // { name: "GraphQL", level: 60, category: "backend" },
 
   // Tools
   { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Docker", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
+  { name: "Redux", level: 75, category: "tools" },
+  { name: "Zustand", level: 90, category: "tools" },
+  { name: "Context Api", level: 95, category: "tools" },
+  { name: "TanStack Query", level: 70, category: "tools" },
   { name: "VS Code", level: 95, category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["all", "frontend", "tools"];
+// const categories = ["all", "frontend", "backend", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -32,6 +37,7 @@ export const SkillsSection = () => {
   const filteredSkills = skills.filter(
     (skill) => activeCategory === "all" || skill.category === activeCategory
   );
+
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -60,7 +66,7 @@ export const SkillsSection = () => {
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
+              className="bg-card p-6 rounded-lg shadow-xs card-hover hover:border border-primary"
             >
               <div className="text-left mb-4">
                 <h3 className="font-semibold text-lg"> {skill.name}</h3>
