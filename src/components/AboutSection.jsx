@@ -16,11 +16,15 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground">
-              With over 5 years of experience in web and mobile development, I specialize in creating responsive, accessible, and performant applications using modern technologies.
+              With over 5 years of experience in web and mobile development, I
+              specialize in creating responsive, accessible, and performant
+              applications using modern technologies.
             </p>
 
             <p className="text-muted-foreground">
-              I'm passionate about crafting elegant solutions to complex problems. I continuously learn new technologies and techniques to stay ahead in the ever-evolving web and mobile landscape.
+              I'm passionate about crafting elegant solutions to complex
+              problems. I continuously learn new technologies and techniques to
+              stay ahead in the ever-evolving web and mobile landscape.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -30,7 +34,7 @@ export const AboutSection = () => {
               </a>
 
               <a
-                // href="#"
+                href="/AJ.pdf" target="_blank"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV
@@ -62,7 +66,8 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Mobile App</h4>
                   <p className="text-muted-foreground">
-                    Building responsive mobile applications for both iOS and Android using Expo.
+                    Building responsive mobile applications for both iOS and
+                    Android using Expo.
                   </p>
                 </div>
               </div>
@@ -74,9 +79,12 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Optimization</h4>
+                  <h4 className="font-semibold text-lg">
+                    Project Optimization
+                  </h4>
                   <p className="text-muted-foreground">
-                    Upgrade and optimize existing projects and code base for both Wed and Mobile to include latest features and updates.
+                    Upgrade and optimize existing projects and code base for
+                    both Wed and Mobile to include latest features and updates.
                   </p>
                 </div>
               </div>
