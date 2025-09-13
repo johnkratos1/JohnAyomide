@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
+  { name: "T-Tech", href: "/teach-tech" },
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
@@ -70,13 +71,13 @@ export const Navbar = () => {
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "transition-all duration-300 md:hidden h-fit",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
+          <div className="flex flex-col space-y-8 text-xl bg-primary/20 w-full font-bold py-3">
             {navItems.map((item, key) => (
               <a
                 key={key}
